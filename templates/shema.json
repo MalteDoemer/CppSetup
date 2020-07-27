@@ -1,0 +1,188 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "C:\\Dev\\vscode\\c++\\cpps\\templates\\shema.json",
+    "title": "Templates",
+    "description": "A list of templates for cpps.exe",
+    "type": "object",
+    "properties": {
+        "developerCommandPrompt": {
+            "description": "Path to visual studios developer command prompt",
+            "type": "string",
+            "default": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\Common7\\Tools\\VSDevCmd.bat"
+        },
+        "templates": {
+            "description": "A array containing all templates",
+            "type": "array",
+            "items": {
+                "$ref": "#definitions/template"
+            },
+            "uniqueItems": true
+        }
+    },
+    "required": [
+        "templates",
+        "developerCommandPrompt"
+    ],
+    "definitions": {
+        "template": {
+            "description": "A object that describes a template",
+            "type": "object",
+            "properties": {
+                "name": {
+                    "description": "The name of the template",
+                    "type": "string"
+                },
+                "sourceFiles": {
+                    "description": "The folder of the templates source files. These files will be copied to the src directory.",
+                    "type": "string"
+                },
+                "vscodeFiles": {
+                    "description": "The folder of files like launch.json and tasks.json. These files will be copied to the .vscode directory.",
+                    "type": "string"
+                },
+                "releaseConfig": {
+                    "description": "The configuration for release builds",
+                    "$ref": "#definitions/buildConfig",
+                    "default": {
+                        "libPath": [],
+                        "includePath": [],
+                        "defines": [
+                            "WIN32",
+                            "NDEBUG",
+                            "_UNICODE",
+                            "UNICODE"
+                        ],
+                        "exceptionModel": "Ehsc",
+                        "runtimeLibrary": "MT",
+                        "compilerOptions": [
+                            "/analyze-",
+                            "/W3",
+                            "/GL",
+                            "/O2",
+                            "/Oi"
+                        ],
+                        "linkerOptions": [
+                            "/INCREMENTAL:NO"
+                        ]
+                    }
+                },
+                "debugConfig": {
+                    "description": "The configuration for debug builds",
+                    "$ref": "#definitions/buildConfig",
+                    "default": {
+                        "libPath": [],
+                        "includePath": [],
+                        "defines": [
+                            "WIN32",
+                            "_DEBUG",
+                            "DEBUG",
+                            "_UNICODE",
+                            "UNICODE"
+                        ],
+                        "exceptionModel": "Ehsc",
+                        "runtimeLibrary": "MTd",
+                        "compilerOptions": [
+                            "/analyze-",
+                            "/W3",
+                            "/Zi"
+                        ],
+                        "linkerOptions": []
+                    }
+                }
+            },
+            "required": [
+                "name",
+                "sourceFiles",
+                "vscodeFiles",
+                "debugConfig",
+                "releaseConfig"
+            ]
+        },
+        "buildConfig": {
+            "type": "object",
+            "properties": {
+                "libPath": {
+                    "$ref": "#definitions/libPath"
+                },
+                "includePath": {
+                    "$ref": "#definitions/includePath"
+                },
+                "defines": {
+                    "$ref": "#definitions/defines"
+                },
+                "exceptionModel": {
+                    "$ref": "#definitions/exceptionModel",
+                    "default": "EHsc"
+                },
+                "runtimeLibrary": {
+                    "$ref": "#definitions/runtimeLibrary"
+                },
+                "compilerOptions": {
+                    "description": "Additional options for cl.exe. For /D /I /INCLUDE runtimeLibrary and exception model use the specified properties. For a list of all options visit: https://docs.microsoft.com/en-us/cpp/build/reference/compiler-options-listed-alphabetically?view=vs-2019",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#definitions/compilerOption"
+                    }
+                },
+                "linkerOptions": {
+                    "description": "Additional options for link.exe. /out is already used. For ..... use the specified properties. For a list of all options visit: https://docs.microsoft.com/en-us/cpp/build/reference/linker-options?view=vs-2019",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#definitions/linkerOption"
+                    }
+                }
+            },
+            "required": [
+                "libPath",
+                "includePath",
+                "runtimeLibrary",
+                "exceptionModel",
+                "compilerOptions",
+                "linkerOptions"
+            ]
+        },
+        "libPath": {
+            "description": "A array of directories to additional libraries. (/LIBPATH linker option)",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "includePath": {
+            "description": "A array of directories for the compiler to search for #includes (/I compiler option)",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "defines": {
+            "description": "A array of additional #defines for the compiler. (/D compiler option)",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "runtimeLibrary": {
+            "description": "The runtime library to link against.\nMT: Multi-threaded\nMTd Multi-threaded Debug\nMD: Multi-threaded DLL\nMDd Multi-threaded Debug DLL",
+            "type": "string",
+            "enum": [
+                "MT",
+                "MTd",
+                "MD",
+                "MDd"
+            ]
+        },
+        "exceptionModel": {
+            "description": "Tells the compiler how exceptions should be handled. For more description see: https://docs.microsoft.com/en-us/cpp/build/reference/eh-exception-handling-model?view=vs-2019",
+            "type": "string"
+        },
+        "compilerOption": {
+            "description": "A option for cl.exe",
+            "type": "string"
+        },
+        "linkerOption": {
+            "description": "A option for link.exe",
+            "type": "string"
+        }
+    }
+}

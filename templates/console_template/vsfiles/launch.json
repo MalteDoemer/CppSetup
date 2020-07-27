@@ -1,0 +1,33 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "name": "Launch debug",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "preLaunchTask": "c++ build debug",
+            "program": "${workspaceFolder}/bin/${workspaceFolderBasename}.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/bin",
+            "environment": [],
+            "externalConsole": true
+        },
+        {
+            "name": "Launch release",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "preLaunchTask": "c++ build release",
+            "program": "${workspaceFolder}/bin/${workspaceFolderBasename}.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/bin",
+            "environment": [],
+            "externalConsole": true
+        }
+    ]
+}

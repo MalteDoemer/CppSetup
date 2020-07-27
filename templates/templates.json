@@ -1,0 +1,147 @@
+{
+    "$schema": "file:C:\\Dev\\vscode\\c++\\cpps\\templates\\shema.json",
+    "developerCommandPrompt": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\Common7\\Tools\\VSDevCmd.bat",
+    "templates": [
+        {
+            "name": "console",
+            "debugConfig": {
+                "includePath": [],
+                "libPath": [],
+                "runtimeLibrary": "MTd",
+                "exceptionModel": "EHsc",
+                "compilerOptions": [
+                    "/analyze-",
+                    "/W3",
+                    "/Zi"
+                ],
+                "linkerOptions": [],
+                "defines": [
+                    "WIN32",
+                    "_DEBUG",
+                    "DEBUG",
+                    "_UNICODE",
+                    "UNICODE"
+                ]
+            },
+            "releaseConfig": {
+                "includePath": [],
+                "libPath": [],
+                "runtimeLibrary": "MT",
+                "exceptionModel": "EHsc",
+                "compilerOptions": [
+                    "/analyze-",
+                    "/W3",
+                    "/GL",
+                    "/O2",
+                    "/Oi"
+                ],
+                "defines": [
+                    "WIN32",
+                    "NDEBUG",
+                    "_UNICODE",
+                    "UNICODE"
+                ],
+                "linkerOptions": [
+                    "/INCREMENTAL:NO"
+                ]
+            },
+            "sourceFiles": "${templateFolder}\\console_template\\srcfiles",
+            "vscodeFiles": "${templateFolder}\\console_template\\vsfiles"
+        },
+        {
+            "name": "sfml",
+            "debugConfig": {
+                "includePath": [
+                    "${templateFolder}\\sfml_template\\sfml\\include"
+                ],
+                "libPath": [
+                    "${templateFolder}\\sfml_template\\sfml\\lib"
+                ],
+                "defines": [
+                    "SFML_STATIC",
+                    "WIN32",
+                    "_DEBUG",
+                    "DEBUG",
+                    "_UNICODE",
+                    "UNICODE"
+                ],
+                "exceptionModel": "Ehsc",
+                "runtimeLibrary": "MDd",
+                "compilerOptions": [
+                    "/analyze-",
+                    "/W3",
+                    "/Zi"
+                ],
+                "linkerOptions": [
+                    "sfml-graphics-s-d.lib",
+                    "sfml-window-s-d.lib",
+                    "sfml-audio-s-d.lib",
+                    "sfml-network-s-d.lib",
+                    "sfml-system-s-d.lib",
+                    "opengl32.lib",
+                    "freetype.lib",
+                    "winmm.lib",
+                    "gdi32.lib",
+                    "openal32.lib",
+                    "flac.lib",
+                    "vorbisenc.lib",
+                    "vorbisfile.lib",
+                    "vorbis.lib",
+                    "ogg.lib",
+                    "ws2_32.lib",
+                    "kernel32.lib",
+                    "user32.lib",
+                    "advapi32.lib"
+                ]
+            },
+            "releaseConfig": {
+                "includePath": [
+                    "${templateFolder}\\sfml_template\\sfml\\include"
+                ],
+                "libPath": [
+                    "${templateFolder}\\sfml_template\\sfml\\lib"
+                ],
+                "defines": [
+                    "SFML_STATIC",
+                    "WIN32",
+                    "NDEBUG",
+                    "_UNICODE",
+                    "UNICODE"
+                ],
+                "exceptionModel": "Ehsc",
+                "runtimeLibrary": "MD",
+                "compilerOptions": [
+                    "/analyze-",
+                    "/W3",
+                    "/GL",
+                    "/O2",
+                    "/Oi"
+                ],
+                "linkerOptions": [
+                    "/INCREMENTAL:NO",
+                    "sfml-graphics-s.lib",
+                    "sfml-window-s.lib",
+                    "sfml-audio-s.lib",
+                    "sfml-network-s.lib",
+                    "sfml-system-s.lib",
+                    "opengl32.lib",
+                    "freetype.lib",
+                    "winmm.lib",
+                    "gdi32.lib",
+                    "openal32.lib",
+                    "flac.lib",
+                    "vorbisenc.lib",
+                    "vorbisfile.lib",
+                    "vorbis.lib",
+                    "ogg.lib",
+                    "ws2_32.lib",
+                    "kernel32.lib",
+                    "user32.lib",
+                    "advapi32.lib"
+                ]
+            },
+            "sourceFiles": "${templateFolder}\\sfml_template\\srcfiles",
+            "vscodeFiles": "${templateFolder}\\sfml_template\\vsfiles"
+        }
+    ]
+}
