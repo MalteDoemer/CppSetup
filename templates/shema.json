@@ -52,7 +52,7 @@
                             "_UNICODE",
                             "UNICODE"
                         ],
-                        "exceptionModel": "Ehsc",
+                        "exceptionModel": "EHsc",
                         "runtimeLibrary": "MT",
                         "compilerOptions": [
                             "/analyze-",
@@ -80,7 +80,7 @@
                             "_UNICODE",
                             "UNICODE"
                         ],
-                        "exceptionModel": "Ehsc",
+                        "exceptionModel": "EHsc",
                         "runtimeLibrary": "MTd",
                         "compilerOptions": [
                             "/analyze-",
