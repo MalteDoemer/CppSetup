@@ -147,6 +147,54 @@
             },
             "sourceFiles": "${templateFolder}\\sfml_template\\srcfiles",
             "vscodeFiles": "${templateFolder}\\sfml_template\\vsfiles"
+        },
+        {
+            "name": "lib",
+            "debugConfig": {
+                "libPath": [],
+                "includePath": [],
+                "defines": [
+                    "WIN32",
+                    "_DEBUG",
+                    "DEBUG",
+                    "_UNICODE",
+                    "UNICODE"
+                ],
+                "exceptionModel": "Ehsc",
+                "runtimeLibrary": "MTd",
+                "compilerOptions": [
+                    "/analyze-",
+                    "/W3",
+                    "/Zi"
+                ],
+                "libOptions": [
+
+                ]
+            },
+            "releaseConfig": {
+                "libPath": [],
+                "includePath": [],
+                "defines": [
+                    "WIN32",
+                    "NDEBUG",
+                    "_UNICODE",
+                    "UNICODE"
+                ],
+                "exceptionModel": "Ehsc",
+                "runtimeLibrary": "MT",
+                "compilerOptions": [
+                    "/analyze-",
+                    "/W3",
+                    "/GL",
+                    "/O2",
+                    "/Oi"
+                ],
+                "libOptions": [
+                    "/LTCG"
+                ]
+            },
+            "sourceFiles": "${templateFolder}\\lib_template\\srcfiles",
+            "vscodeFiles": "${templateFolder}\\lib_template\\vsfiles"
         }
     ]
 }

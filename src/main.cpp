@@ -8,11 +8,12 @@ class CppSetup
 private:
     struct BuildConfig
     {
+        bool hasLibOptions;
         std::string runtimeLibrary;
         std::string exceptionModel;
         std::vector<std::string> defines;
         std::vector<std::string> compilerOptions;
-        std::vector<std::string> linkerOptions;
+        std::vector<std::string> linkerOrLibOptions;
         std::vector<std::string> libPaths;
         std::vector<std::string> includePaths;
     };
@@ -33,7 +34,7 @@ private:
     std::vector<Template> templates;
 
 public:
-    CppSetup(int argc, const char **argv) 
+    CppSetup(int argc, const char **argv)
     {
         parser = ArgumentParser(argc, argv);
         rootFolder = ComputeRootFolder();
@@ -134,7 +135,18 @@ private:
         result.runtimeLibrary = json["runtimeLibrary"].get<std::string>();
         result.exceptionModel = json["exceptionModel"].get<std::string>();
         result.compilerOptions = json["compilerOptions"].get<std::vector<std::string>>();
-        result.linkerOptions = json["linkerOptions"].get<std::vector<std::string>>();
+
+        if (json.find("linkerOptions") != json.end())
+        {
+            result.linkerOrLibOptions = json["linkerOptions"].get<std::vector<std::string>>();
+            result.hasLibOptions = false;
+        }
+        else
+        {
+            result.linkerOrLibOptions = json["libOptions"].get<std::vector<std::string>>();
+            result.hasLibOptions = true;
+        }
+
         result.libPaths = json["libPath"].get<std::vector<std::string>>();
         result.includePaths = json["includePath"].get<std::vector<std::string>>();
         result.defines = json["defines"].get<std::vector<std::string>>();
@@ -199,12 +211,15 @@ private:
 
         str << "for /r \".\" %%i in (*.obj) do set \"objs=%objs%%%~fi \"\n";
 
-        str << "link.exe ";
+        if (config.hasLibOptions)
+            str << "lib.exe ";
+        else
+            str << "link.exe ";
 
         for (auto &l : config.libPaths)
             str << "/LIBPATH:\"" << l << "\" ";
 
-        for (auto &lo : config.linkerOptions)
+        for (auto &lo : config.linkerOrLibOptions)
             str << lo << " ";
 
         str << "%objs% ";
