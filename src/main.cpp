@@ -182,6 +182,8 @@ private:
 
         str << "cl.exe /" << config.exceptionModel << " /" << config.runtimeLibrary << " ";
 
+        str << "/c ";
+
         for (auto &o : config.compilerOptions)
             str << o << " ";
 
@@ -191,8 +193,11 @@ private:
         for (auto &i : config.includePaths)
             str << "/I\"" << i << "\" ";
 
-        str << "%files% ";
-        str << "/link ";
+        str << "%files%\n";
+
+        str << "for /r \".\" %%i in (*.obj) do set \"objs=%objs%%%~fi \"\n";
+
+        str << "link.exe ";
 
         for (auto &l : config.libPaths)
             str << "/LIBPATH:\"" << l << "\" ";
@@ -200,7 +205,9 @@ private:
         for (auto &lo : config.linkerOptions)
             str << lo << " ";
 
+        str << "%objs% ";
         str << "/out:%EXE_NAME%\n";
+
         str << "popd\n";
         str << "pushd %~dp0..\n";
         str << "copy obj\\%EXE_NAME% bin\\%EXE_NAME%\n";

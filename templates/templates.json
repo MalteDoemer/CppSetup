@@ -14,7 +14,9 @@
                     "/W3",
                     "/Zi"
                 ],
-                "linkerOptions": [],
+                "linkerOptions": [
+                    "/DEBUG"
+                ],
                 "defines": [
                     "WIN32",
                     "_DEBUG",
@@ -42,6 +44,7 @@
                     "UNICODE"
                 ],
                 "linkerOptions": [
+                    "/LTCG",
                     "/INCREMENTAL:NO"
                 ]
             },
@@ -73,6 +76,7 @@
                     "/Zi"
                 ],
                 "linkerOptions": [
+                    "/DEBUG",
                     "sfml-graphics-s-d.lib",
                     "sfml-window-s-d.lib",
                     "sfml-audio-s-d.lib",
@@ -118,6 +122,7 @@
                     "/Oi"
                 ],
                 "linkerOptions": [
+                    "/LTCG",
                     "/INCREMENTAL:NO",
                     "sfml-graphics-s.lib",
                     "sfml-window-s.lib",
