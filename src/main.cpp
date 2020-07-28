@@ -154,7 +154,7 @@ private:
         str << "setlocal enabledelayedexpansion\n";
 
         str << "pushd %~dp0..\\src\n";
-        str << "for %%i in (*.cpp) do set \"files=!files!%%~fi \"\n";
+        str << "for /r \".\" %%i in (*.cpp) do set \"files=!files!%%~fi \"\n";
         str << "popd\n";
 
         str << "if \"!BUILD_CONFIG!\"==\"release\" ( \n";
