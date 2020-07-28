@@ -127,21 +127,42 @@
                         "$ref": "#definitions/compilerOption"
                     }
                 },
+                "libOptions": {
+                    "description": "Additional options for lib.exe. /out is already used. For libPath use the specified property. For a list of all options visit: https://docs.microsoft.com/en-us/cpp/build/reference/overview-of-lib?view=vs-2019",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#definitions/libOption"
+                    }
+                },
                 "linkerOptions": {
-                    "description": "Additional options for link.exe. /out is already used. For ..... use the specified properties. For a list of all options visit: https://docs.microsoft.com/en-us/cpp/build/reference/linker-options?view=vs-2019",
+                    "description": "Additional options for link.exe. /out is already used. For libPath use the specified property. For a list of all options visit: https://docs.microsoft.com/en-us/cpp/build/reference/linker-options?view=vs-2019",
                     "type": "array",
                     "items": {
                         "$ref": "#definitions/linkerOption"
                     }
                 }
             },
-            "required": [
-                "libPath",
-                "includePath",
-                "runtimeLibrary",
-                "exceptionModel",
-                "compilerOptions",
-                "linkerOptions"
+            "oneOf": [
+                {
+                    "required": [
+                        "libPath",
+                        "includePath",
+                        "runtimeLibrary",
+                        "exceptionModel",
+                        "compilerOptions",
+                        "linkerOptions"
+                    ]
+                },
+                {
+                    "required": [
+                        "libPath",
+                        "includePath",
+                        "runtimeLibrary",
+                        "exceptionModel",
+                        "compilerOptions",
+                        "libOptions"
+                    ]
+                }
             ]
         },
         "libPath": {
@@ -185,6 +206,10 @@
         },
         "linkerOption": {
             "description": "A option for link.exe",
+            "type": "string"
+        },
+        "libOption": {
+            "description": "A option for lib.exe",
             "type": "string"
         }
     }
