@@ -149,21 +149,23 @@ private:
 
         str << "@echo off\n\n";
         str << "call \"" << vsDevCmd << "\" > nul\n\n";
-        str << "set \"EXE_NAME=%~1\"\n";
+        str << "set \"APP_NAME=%~1\"\n";
         str << "set \"BUILD_CONFIG=%~2\"\n\n";
-        str << "setlocal enabledelayedexpansion\n";
 
         str << "pushd %~dp0..\\src\n";
-        str << "for /r \".\" %%i in (*.cpp) do set \"files=!files!%%~fi \"\n";
+        str << "for /r \".\" %%i in (*.cpp) do set \"files=%files%%%~fi \"\n";
         str << "popd\n";
 
-        str << "if \"!BUILD_CONFIG!\"==\"release\" ( \n";
+        str << "if \"%BUILD_CONFIG%\"==\"release\" ( \n";
         str << "    call:release\n";
         str << ") else (\n";
         str << "    call:debug\n";
         str << ")\n";
 
-        str << "endlocal\n";
+        str << "pushd %~dp0..\n";
+        str << "copy obj\\%APP_NAME% bin\\%APP_NAME%\n";
+        str << "popd\n";
+
         str << "exit /b\n\n";
 
         str << GenerateBuildConfig("debug", t.debugConfig);
@@ -206,11 +208,8 @@ private:
             str << lo << " ";
 
         str << "%objs% ";
-        str << "/out:%EXE_NAME%\n";
+        str << "/out:%APP_NAME%\n";
 
-        str << "popd\n";
-        str << "pushd %~dp0..\n";
-        str << "copy obj\\%EXE_NAME% bin\\%EXE_NAME%\n";
         str << "popd\n";
         str << "goto:eof\n\n";
 
