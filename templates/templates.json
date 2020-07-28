@@ -1,5 +1,5 @@
 {
-    "$schema": "file:C:\\Dev\\vscode\\c++\\cpps\\templates\\shema.json",
+    "$schema": "https://raw.githubusercontent.com/MalteDoemer/CppSetup/master/templates/shema.json",
     "developerCommandPrompt": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\Common7\\Tools\\VSDevCmd.bat",
     "templates": [
         {
